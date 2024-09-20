@@ -4,7 +4,7 @@ import json
 from location_info import locations
 from HouseSigma_Realtor.crawler.realtor import Realtor
 from HouseSigma_Realtor.configurations.config import USERNAME, PASSWORD
-from HouseSigma_Realtor.utils.update_json_file import update_file
+from HouseSigma_Realtor.utils.update_json_file import update_file, update_broker_list
 
 class HouseSigma:
     def __init__(self):
@@ -159,8 +159,11 @@ class HouseSigma:
             brokers = self.realtor.fetch_broker(realtor_url)
             item['brokers'] = brokers
 
-        update_file(item)
-        # self.all_properties.append(item)
+            # update broker's database
+            update_broker_list(brokers)
+
+            # update listing database
+            update_file(item)
 
     def parse_history(self, history):
         """
