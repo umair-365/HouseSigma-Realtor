@@ -52,7 +52,7 @@ def get_unique_brokers(broker_list1, broker_list2):
 
 
 def update_file(property_object):
-    output_file = 'database/output_file.json'
+    output_file = 'database/listings.json'
 
     if not os.path.exists(output_file):
         file = open(output_file, 'w')
